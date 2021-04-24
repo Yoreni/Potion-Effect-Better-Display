@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "a.yoreni.potioneffectmod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "EntityStatusEffectS2CPacketMixin",
+    "HandledScreenMixin",
+    "InGameHudMixin",
+    "InventoryScreenMixin",
+    "StatusEffectMixin"
+  ],
+  "server": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
