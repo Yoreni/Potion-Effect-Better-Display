@@ -41,6 +41,14 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         }
     }
 
+   /**
+     *  This method gets which status effect (the ones that weve
+     *  drawn in the HUD) the mouse is hovering over.
+     * 
+     * @param mouseX the x positon of the mouse
+     * @param mouseY the y positon of the mouse
+     * @return A StatusEffect instance.
+     */
     private StatusEffect getMouseHoverEffect(int mouseX, int mouseY)
     {
         MinecraftClient minecraft = MinecraftClient.getInstance();
