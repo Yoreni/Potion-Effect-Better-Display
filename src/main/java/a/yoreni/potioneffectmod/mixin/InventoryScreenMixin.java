@@ -25,14 +25,12 @@ public class InventoryScreenMixin<T extends ScreenHandler> extends HandledScreen
     @Inject(method="render", at=@At("RETURN"))
     public void drawBetterStatusEffects(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci)
     {
-        // System.out.println(String.format("X: %d   Y: %d", mouseX, mouseY));
         DrawStatusEffects dse = new DrawStatusEffects(this);
         dse.renderStatusEffectOverlay(matrices);
     }
 
     //code below coppied and pasted from https://github.com/HellsingDarge/CompactStatusEffects/blob/master/src/main/java/me/hellsingdarge/compactstatuseffects/mixins/AbstractInventoryScreenMixin.java
     //thx
-
     @Inject(method = "applyStatusEffectOffset", at = @At(value = "TAIL"))
     public void applyStatusEffectOffset(CallbackInfo ci)
     {

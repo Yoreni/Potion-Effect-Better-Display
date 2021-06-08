@@ -10,7 +10,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,10 +40,17 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         }
     }
 
+<<<<<<< Updated upstream
    /**
      *  This method gets which status effect (the ones that weve
      *  drawn in the HUD) the mouse is hovering over.
      * 
+=======
+    /**
+     *  This method gets which status effect (the ones that weve
+     *  drawn in the HUD) the mouse is hovering over.
+     *
+>>>>>>> Stashed changes
      * @param mouseX the x positon of the mouse
      * @param mouseY the y positon of the mouse
      * @return A StatusEffect instance.
@@ -71,23 +77,25 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         }
 
         //picking which status effect depending on the position of the mouse
-        StatusEffect effect = null;
-        int index = ((scaledWidth - mouseX) % 32 >= 4)  ? (scaledWidth - mouseX) / 32 : -1;
+        StatusEffect output = null;
+        boolean mouseIsInbetweenIcons = (scaledWidth - mouseX) % 32 >= 4;
+        int index = !mouseIsInbetweenIcons ? (scaledWidth - mouseX) / 32 : -1;
+
         if(mouseY >= 2 && mouseY <= 30) // buffs are always positioned in range 2<=y<=30
         {
             if(index != -1 && index < buffs.size())
             {
-                effect = buffs.get(index);
+                output = buffs.get(index);
             }
         }
         else if(mouseY >= 33 && mouseY < 64) // debuff are always positioned in range 33<=y<=64
         {
             if(index != -1 && index < debuffs.size())
             {
-                effect = debuffs.get(index);
+                output = debuffs.get(index);
             }
         }
 
-        return effect;
+        return output;
     }
 }
