@@ -40,17 +40,10 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         }
     }
 
-<<<<<<< Updated upstream
-   /**
-     *  This method gets which status effect (the ones that weve
-     *  drawn in the HUD) the mouse is hovering over.
-     * 
-=======
     /**
      *  This method gets which status effect (the ones that weve
      *  drawn in the HUD) the mouse is hovering over.
      *
->>>>>>> Stashed changes
      * @param mouseX the x positon of the mouse
      * @param mouseY the y positon of the mouse
      * @return A StatusEffect instance.
