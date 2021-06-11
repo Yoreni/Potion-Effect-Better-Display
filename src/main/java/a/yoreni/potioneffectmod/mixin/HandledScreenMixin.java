@@ -71,7 +71,7 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
 
         //picking which status effect depending on the position of the mouse
         StatusEffect output = null;
-        boolean mouseIsInbetweenIcons = (scaledWidth - mouseX) % 32 >= 4;
+        boolean mouseIsInbetweenIcons = (scaledWidth - mouseX) % 32 < 4;
         int index = !mouseIsInbetweenIcons ? (scaledWidth - mouseX) / 32 : -1;
 
         if(mouseY >= 2 && mouseY <= 30) // buffs are always positioned in range 2<=y<=30

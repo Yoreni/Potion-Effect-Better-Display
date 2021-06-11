@@ -45,9 +45,13 @@ public class DrawStatusEffects
             int goodEffects = 0;
             int badEffects = 0;
             StatusEffectSpriteManager statusEffectSpriteManager = minecraft.getStatusEffectSpriteManager();
+
+            //these two Runnable Lists are used to draw the Sprites and Text
             List<Runnable> list = Lists.newArrayListWithExpectedSize(collection.size());
             List<Runnable> textDrawList = Lists.newArrayListWithExpectedSize(collection.size());
-            minecraft.getTextureManager().bindTexture(HandledScreen.BACKGROUND_TEXTURE);
+
+            //minecraft.getTextureManager().bindTexture(HandledScreen.BACKGROUND_TEXTURE);
+            RenderSystem.setShaderTexture(0, HandledScreen.BACKGROUND_TEXTURE);
             float scaleFactor = 1.25f;
             int spacing = 32;
 
@@ -79,15 +83,13 @@ public class DrawStatusEffects
                     }
 
                     // Drawing the background of the icon
-                    RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    //int size = 24;
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                     if (effectInstance.isAmbient())
                     {
-                        drawableHelper.drawTexture(matrices, xpos, ypos, 165, 166, 33, 41);
+                        drawableHelper.drawTexture(matrices, xpos, ypos, 165, 166, 24, 24);
                     }
                     else
                     {
-                        // u=141 and v=166
                         drawableHelper.drawTexture(matrices, xpos, ypos, 141, 166, 24, 24);
                     }
 
@@ -95,13 +97,13 @@ public class DrawStatusEffects
                     Sprite sprite = statusEffectSpriteManager.getSprite(statusEffect);
                     int finalK = (int) ((float) xpos * (scaleFactor));
                     int finalL = (int) ((float) ypos * (scaleFactor));
-                    float finalF = calcSpriteAlpha(effectInstance);
+                    float iconAlpha = calcSpriteAlpha(effectInstance);
                     list.add(() ->
                     {
-                        minecraft.getTextureManager().bindTexture(sprite.getAtlas().getId());
-                        RenderSystem.color4f(1.0F, 1.0F, 1.0F, finalF);
+                        RenderSystem.setShaderTexture(0, sprite.getAtlas().getId());
+                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, iconAlpha);
                         drawableHelper.drawSprite(matrices, finalK + (int) (5 * (scaleFactor)), finalL
-                                + (int) (5 * (scaleFactor)), drawableHelper.getZOffset(), 18, 18, sprite);
+                                + (int) (4 * (scaleFactor)), drawableHelper.getZOffset(), 18, 18, sprite);
                     });
 
                     //putting it back again or funny things happen
