@@ -4,9 +4,9 @@
   "version": "${version}",
 
   "name": "Potion Effect Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A mod that displays potion effects without opening your inventory while keeping to the theme of the game. When this is installed on the server it also shows durations >30mins.",
   "authors": [
-    "Me!"
+    "Yoreni"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
